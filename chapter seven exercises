@@ -1,0 +1,416 @@
+7.3（计算数字出现的个数）
+用count[1]存储数字1的次数，用count[2]存储数字2的次数,......,以此类推。最后只选择输出counts[i]不为0的元素值
+import java.util.Scanner;
+public class Practice {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input=new Scanner(System.in);
+		System.out.print("Enter the integers between 1 and 100: ");
+		int[] MyList=new int[101];
+		int integers=input.nextInt();
+		while(integers!=0) {
+			if(integers>=0&&integers<=100) {
+				MyList[integers]++;
+			}
+				integers=input.nextInt();
+		}
+		for(int i=1;i<=100;i++) {
+			if(MyList[i]>0) {
+			System.out.println(i+" occurs "+MyList[i]+(MyList[i]>1 ? " times":" time"));
+		}
+		}
+	}
+}
+
+
+
+
+
+7.5（打印不同的数）
+import java.util.Scanner;
+public class Practice {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input=new Scanner(System.in);
+		System.out.print("Enter ten numbers: ");
+		int[] MyList=new int[100];
+		for(int i=0;i<10;i++){
+			int number=input.nextInt();
+			MyList[number]++;
+		}
+		System.out.print("The number of distinct number is ");
+		int count=0;
+		for(int i=0;i<100;i++) {
+			if(MyList[i]!=0) {
+				count++;
+			}
+	}
+		System.out.println(count);
+		System.out.print("The distinct numbers are: ");
+		for(int i=0;i<100;i++){
+			if(MyList[i]!=0) {
+				System.out.print(i+" ");
+			}
+	}
+	}
+}
+
+
+
+
+
+7.17（对学生排序）
+import java.util.Scanner;
+public class Practice {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input=new Scanner(System.in);
+		System.out.print("Enter the number of students: ");
+		int number=input.nextInt();
+		System.out.print("Enter the names of students: ");
+		String[] names=new String[number];
+		for(int i=0;i<number;i++) {
+			names[i]=input.next();//使用输入值初始化数组
+		}
+		System.out.print("Enter the scores of students:");
+		Double[] grades=new Double[number];
+		for(int i=0;i<number;i++) {
+			grades[i]=input.nextDouble();//使用输入值初始化数组
+		}
+
+		//数组的降序排序
+		for(int i=0;i<number-1;i++) {
+			for(int j=i+1;j<number;j++) {
+				if(grades[i]<grades[j]) {
+					double temp1=grades[i];
+					grades[i]=grades[j];
+					grades[j]=temp1;
+					String temp2=names[i];
+					names[i]=names[j];
+					names[j]=temp2;
+				}
+			}
+		}
+		
+		for(int i=0;i<number;i++) {
+			System.out.println(names[i]+":"+grades[i]);
+		}
+		}
+	}
+
+
+
+
+
+7.18（冒泡排序）
+import java.util.Scanner;
+public class Pratice {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input=new Scanner(System.in);
+		System.out.print("Enter the number of the array: ");
+		int number=input.nextInt();
+		System.out.print("Enter the contents of  the array: ");
+		double[] array=new double[number];
+		for(int i=0;i<number;i++) {
+			array[i]=input.nextDouble();
+		}
+			
+		//冒泡排序
+		for(int i=0;i<number-1;i++) {
+			for(int j=0;j<number-1;j++) {
+				if(array[j]<array[j+1]) {
+					double temp=array[j];
+					array[j]=array[j+1];
+					array[j+1]=temp;
+				}
+			}
+		}
+		
+		for(int i=0;i<number;i++) {
+			System.out.print(array[i]+" ");
+		}
+	}
+
+}
+
+
+
+
+
+7.19（排好序了吗？）
+import java.util.Scanner;
+public class Pratice {
+	
+    public static void main(String[] args){
+    	// TODO Auto-generated method stub
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the size of the list: ");
+        int size= input.nextInt();
+        System.out.print("Enter the contents of the list: ");
+        int[] array= new int[size];
+        for(int i=0;i<size;i++) {
+            array[i]=input.nextInt();
+        }
+        
+        System.out.print("The list has "+size+" integers ");
+        for(int i=0;i<size;i++) {
+            System.out.print(array[i]+" ");
+        }
+        System.out.print('\n');
+        
+        if(isSorted(array)) {
+            System.out.println("The list is already sorted");
+        }
+        else {
+            System.out.println("The list is not sorted");
+        }
+    }
+    
+    public static boolean isSorted(int[] list){
+    	if(list.length==0||list.length==1) {
+            return true;
+        }
+        else{
+            for(int i=0;i<list.length-1;i++){
+                if(list[i]>list[i+1]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
+
+
+
+
+7.23（游戏：储物柜难题）
+import java.util.Scanner;
+public class Pratice {
+	
+    public static void main(String[] args){
+    	// TODO Auto-generated method stub
+    	Scanner input=new Scanner(System.in);
+    	boolean[] array=new boolean[101];
+    	for(int i=1;i<=100;i++) {
+    		if(i==1) {
+    			for(int j=1;j<=100;j++) {
+    				array[j]=!array[j];
+    			}
+    		}
+    		else if(i==2) {
+    			for(int j=i;j<=100;j+=2) {
+    				array[j]=!array[j];
+    			}
+    		}
+    		else {
+    			for(int j=i;j<=100;j+=i) {
+    				array[j]=!array[j];
+    			}
+    		}
+    	}
+    	for(int i=1;i<=100;i++) {
+    		if(array[i]) {
+    			System.out.println(i);
+    		}
+    	}
+    }
+}
+
+
+
+
+
+7.24（仿真：优惠券收集问题）
+import java.util.Scanner;
+public class Pratice {
+	
+    public static void main(String[] args){
+    	// TODO Auto-generated method stub
+    	Scanner input=new Scanner(System.in);
+    	String[] suits= {"Spades","Hearts","Diamonds","Clubs"};
+    	String[] ranks= {"Ace","2","3","4","5","6","7","8","9","10","Jack","Queue","King"};
+    	int count=0;;
+    	int times=0;
+    	int[] deck=new int[4];
+    	while(count<4) {
+    	    int index=(int)(Math.random()*52);
+    		times++;
+    		if(deck[index/13]==0) {
+    			deck[index/13]=index;
+    			count++;
+    	
+       }
+    	
+    	for(int i=0;i<4;i++) {
+    		String suit=suits[i];
+    		String rank=ranks[deck[i]%13];
+    		System.out.println(rank+" of "+suit);
+    	}
+    	System.out.println("Number of picks: "+ times);
+    }
+}
+
+
+
+
+
+7.31（合并两个有序列表）
+import java.util.Scanner;
+import java.util.Arrays;
+public class Test {
+	
+    public static void main(String[] args){
+    	// TODO Auto-generated method stub
+    	Scanner input=new Scanner(System.in);
+    	System.out.print("Enter list1: ");
+    	int size1=input.nextInt();
+    	int[] array1=new int[size1];
+    	for(int i=0;i<size1;i++) {
+    		array1[i]=input.nextInt();
+    	}
+    	
+    	System.out.print("Enter list2: ");
+    	int size2=input.nextInt();
+    	int[] array2=new int[size2];
+    	for(int i=0;i<size2;i++) {
+    		array2[i]=input.nextInt();
+    	}
+    	
+    	java.util.Arrays.sort(array1);
+    	System.out.print("list1 is ");
+    	for(int i=0;i<size1;i++) {
+    		System.out.print(array1[i]+" ");
+    	}
+    	System.out.print('\n');
+    	
+    	java.util.Arrays.sort(array2);
+    	System.out.print("list2 is ");
+    	for(int i=0;i<size2;i++) {
+    		System.out.print(array2[i]+" ");
+    	}
+    	System.out.print('\n');
+    	
+    	int[] array=merge(array1,array2);
+    	System.out.print("The merged list is ");
+    	for(int i=0;i<size1+size2;i++) {
+    		System.out.print(array[i]+" ");
+    	}
+    	
+    }
+    
+    public static int[] merge(int[] list1,int[] list2) {
+    	int len1=list1.length;
+    	int len2=list2.length;
+    	int len=len1+len2;
+    	int[] Array=new int[len];
+    	int count=0;
+    	int index1=0;
+    	int index2=0;
+    	while(index1<len1&&index2<len2) {
+    		if(list1[index1]<list2[index2]) {
+    			Array[count]=list1[index1];
+    			count++;
+    			index1++;
+    		}
+    		else {
+    			Array[count]=list2[index2];
+    			count++;
+    			index2++;
+    		}
+    	}
+    	if(index1<len1-1) {
+    		for(int i=count;i<=len1+len2-1;i++) {
+    			Array[i]=list1[index1];
+    			index1++;
+    		}
+    	}
+    	else if(index2<len2-1){
+    		for(int i=count;i<=len1+len2-1;i++) {
+    			Array[i]=list2[index2];
+    			index2++;
+    		}
+    	}
+    	return Array;
+    }
+}
+
+
+
+
+
+7.32（划分列表）
+import java.util.Scanner;
+public class Pratice {
+	
+    public static void main(String[] args){
+    	// TODO Auto-generated method stub
+    	Scanner input=new Scanner(System.in);
+    	System.out.print("Enter list: ");
+    	int size=input.nextInt();
+    	int[] array=new int[size];
+    	for(int i=0;i<size;i++) {
+    		array[i]=input.nextInt();
+    	}
+    	partition(array);
+    	System.out.print("After the partition. the list is ");
+    	for(int i=0;i<size;i++) {
+    		System.out.print(array[i]+" ");
+    	}
+    }
+    
+    public static int partition(int[] list) {
+    	int index=0;
+    	int temp=0;
+    	for(int i=1;i<list.length;i++) {
+    		if(list[i]<=list[index]) {
+    			temp=list[i];
+    			list[i]=list[index];
+    			list[index]=temp;
+    			temp=list[index+1];
+    			list[index+1]=list[i];
+    			list[i]=temp;
+    			index++;
+    		}
+    	}
+    	return index;
+    }
+}
+
+
+
+
+
+7.34（对字符串中的字符排序）
+import java.util.Scanner;
+public class Pratice {
+	
+    public static void main(String[] args){
+    	// TODO Auto-generated method stub
+    	Scanner input=new Scanner(System.in);
+    	System.out.print("Enter the String: ");
+    	String s=input.next();
+    	System.out.println("After the sorted. the String is "+sort(s));
+    }
+    
+    public static String sort(String s) {
+    	int len=s.length();
+    	char[] array=new char[len];
+    	for(int i=0;i<len;i++) {
+    		array[i]=s.charAt(i);//charAt(i)返回第i+1个位置的字符
+    	}
+    	java.util.Arrays.sort(array);
+    	String s1="";
+    	for(int i=0;i<len;i++) {
+    		s1+=array[i];
+    	}
+    	return s1;
+    }
+}
+
